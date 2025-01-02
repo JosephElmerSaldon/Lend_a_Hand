@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="item-entry">
+        <h1><a href="">{{ item.name }}</a></h1>
+        <p><b>Owner: </b>{{ item.owner }}</p>
+        <p><b>Description: </b>{{ item.description }}</p>
+        <p><b>Availabilty: </b>{% if item.is_available %}Available{% else %}Not Available{% endif %}</p>
+        <p><b>Posted At: </b>{{ item.created_at }}</p>
+    </div>  
+    <a href="{% url 'item_update' object.pk %}">+ Edit Item</a>
+    <a href="{% url 'item_delete' object.pk %}">- Delete Item</a>
+{% endblock content %}

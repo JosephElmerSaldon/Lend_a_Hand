@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <a class="createbtn" href="{% url 'item_create' %}"> + Create</a>
+    {% for item in items %}
+    <div class="item-entry"> 
+        <h1><a href="{% url 'item_detail' item.pk %}">{{ item.name }}</a></h1>
+        <!-- <p><b>Owner: </b>{{ item.owner }}</p>
+        <p><b>Posted At: </b>{{ item.created_at }}</p> -->
+    </div>
+    {% endfor %}
+{% endblock content %}

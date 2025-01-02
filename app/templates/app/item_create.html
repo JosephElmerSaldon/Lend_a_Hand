@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+   <h1>New Items</h1>
+   <form action="{% url 'item_create' %}" method="post">
+        {% csrf_token %}
+       <!-- {{ form.as_p }} -->
+         <div>
+            <label for="itemname">Name:</label>
+            <input type="text" id="itemname" name="name">
+         </div>
+         <div>
+            <label for="itemowner">Owner:</label>
+            <select name="owner" id="itemowner">
+                  {% for owner in users %}
+                     <option value="{{ owner.pk }}" {% if owner.pk == form.owner.value %} selected{% endif %}>
+                        {{ owner }}
+                     </option>
+                  {% endfor %}
+            </select>
+         </div>
+         <div>
+            <label for="itemdescription">Description:</label>
+            <input type="text" id="itemdescription" name="description">
+         </div>
+         <div>
+            <label for="itemisavailable">Availability:</label>
+            <input type="hidden" name="is_available" value="False">
+            <input type="checkbox" id="itemisavailable" name="is_available" value="True">
+         </div>
+       <input type="submit" value="Create"> 
+   </form>
+{% endblock content %}  
